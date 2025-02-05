@@ -4,18 +4,18 @@ function Task(props) {
     let task;
     if (props.todoItem.status === 'completed') {
         task = (
-            <li>
-                <h3>
+            <li style={{display:'flex',flexDirection:'row',justifyContent:'center'}}>
+                <input type='Checkbox' checked onChange={() => {props.changeItemStatus(props.todoItem)}}></input>
                     <strike>{props.todoItem.description}</strike>
-                </h3>
+                <input type='button' value={'Delete'} onClick={()=> {props.removeItem(props.todoItem)}}></input>
             </li>
         );
     } else {
         task = (
-            <li>
-                <h3>
-                    {props.todoItem.description}
-                </h3>
+            <li style={{display:'flex',flexDirection:'row',padding:'0px',justifyContent:'center'}}>
+                <input type='Checkbox' checked='' onChange={() => {props.changeItemStatus(props.todoItem)}}></input>
+                {props.todoItem.description}
+                <input type='button' value={'Delete'} onClick={()=> {props.removeItem(props.todoItem)}}></input>
             </li>
         );
     }

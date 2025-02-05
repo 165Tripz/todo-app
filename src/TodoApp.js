@@ -41,11 +41,20 @@ function TodoApp() {
         );
     }
 
+    function changeItemStatus(item) {
+        item.status === 'pending' ? item.status='completed' : item.status='pending';
+        let otherItems = todoItems.filter(i => i.id !== item.id);
+        
+        setTodoItems(
+            [... otherItems, item].sort((a,b) => a.id - b.id)
+        );
+    }
+
     return (
     <div className="TodoApp">
         <TodoForm onAddItem={addTodoItem}/>
         <Summary todoItems={todoItems}/>
-        <TodoList todoItems={todoItems}/>
+        <TodoList todoItems={todoItems} changeItemStatus={changeItemStatus} removeTodoItem={removeTodoItem}/>
     </div>
     );
 }
